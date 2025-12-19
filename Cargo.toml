@@ -2,7 +2,52 @@
 name = "crosshair_gen"
 version = "0.1.0"
 edition = "2024"
+license = "MIT OR Apache-2.0"
+readme = false
+description = "Crosshair configurator with live preview and SVG batch generation"
 
 [dependencies]
-image = { version = "0.25", features = ["png"] }
-imageproc = "0.25"
+svg = "0.13"
+eframe = "0.27"
+rfd = "0.14"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[package.metadata.deb]
+name = "crosshair-gen"
+section = "graphics"
+priority = "optional"
+depends = "$auto"
+assets = [
+    ["target/release/crosshair_gen", "usr/bin/crosshair-gen", "755"],
+    ["LICENSE", "usr/share/doc/crosshair-gen/LICENCE", "644"],
+    [
+        "resources/csv-defaults/unique_crosshair_color_pairs.csv",
+        "usr/local/lib/xhGen/csv-library/unique_crosshair_color_pairs.csv",
+        "644",
+    ],
+    [
+        "resources/csv-defaults/unique_crosshair_color_pairs2.csv",
+        "usr/local/lib/xhGen/csv-library/unique_crosshair_color_pairs2.csv",
+        "644",
+    ],
+    [
+        "packaging/crosshair-gen.desktop",
+        "usr/share/applications/crosshair-gen.desktop",
+        "644",
+    ],
+    [
+        "resources/icon/icon_full.svg",
+        "usr/share/icons/hicolor/scalable/apps/crosshair-gen.svg",
+        "644",
+    ],
+    [
+        "resources/icon/icon_full_512.png",
+        "usr/share/icons/hicolor/512x512/apps/crosshair-gen.png",
+        "644",
+    ],
+]
+maintainer-scripts = "debian"
+extended-description = """
+Native crosshair configurator and generator with live preview. Includes CSV-driven batch SVG export.
+"""

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Crosshair Configurator
+Comment=Configure and preview crosshair SVGs; includes batch generation.
+Exec=/usr/bin/crosshair-gen
+Icon=crosshair-gen
+Terminal=false
+Type=Application
+Categories=Graphics;Utility;
+StartupNotify=true
